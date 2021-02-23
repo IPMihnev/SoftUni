@@ -7,9 +7,11 @@ namespace LinkedList
     {
         public Node Head { get; set; }
         public Node Tail { get; set; }
+        public int Count { get; set; }
 
         public void AddHead(Node newHead)
         {
+            Count++;
             if (Head == null)
             {
                 Head = newHead;
