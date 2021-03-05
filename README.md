@@ -1,2 +1,2 @@
 # SoftUni
-C# exercises
+Exercises with C#, EFCore and .NET
