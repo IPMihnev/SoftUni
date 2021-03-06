@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace P01_StudentSystem
+﻿namespace P01_StudentSystem
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
