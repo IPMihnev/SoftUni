@@ -1,0 +1,94 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <label for="idInput">Въведете id:</label>
+        <input type="text" id="idInput" name="idInput">
+        <input type="submit" value="Провери">
+        <div id="resultContainer">
+        </div>
+        <h1>Sample page</h1>
+        <div id="row">
+            <div id="col1">
+                <h2>Section 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc 
+ipsum quam, condimentum ac pulvinar sed, luctus sed libero. Vestibulum vestibulum
+ sodales tellus, sit amet placerat nulla venenatis non. Nunc facilisis est eget f
+acilisis sollicitudin. Proin placerat mi eget consequat congue. </p>
+                <p>Pellentesque finibus convallis magna, in convallis sapien ferm
+entum id. Quisque rutrum sapien at sagittis sagittis. Interdum et malesuada fames
+ ac ante ipsum primis in faucibus. Vestibulum a interdum felis. Vestibulum ac nun
+c vel turpis posuere venenatis a eu arcu. Morbi vulputate massa sit amet dui cons
+
+ectetur efficitur. Phasellus a lobortis enim. Mauris hendrerit consectetur orci e
+get scelerisque.</p>
+            </div>
+            <div id="col2">
+                <h2>Section 1</h2>
+                <p><a href="#">Lipsum dolor</a> sit amet, consectetur adipiscing 
+elit. Nunc ipsum quam, condimentum ac pulvinar sed, luctus sed libero. Vestibulum
+ vestibulum sodales tellus, sit amet placerat nulla venenatis non. Nunc facilisis
+ est eget facilisis sollicitudin. Proin placerat mi eget consequat congue. </p>
+                <p>Pellentesque finibus convallis magna, in convallis sapien ferm
+entum id. Quisque rutrum sapien at sagittis sagittis. Interdum et malesuada fames
+ ac ante ipsum primis in faucibus. Vestibulum a interdum felis. Vestibulum ac nun
+c vel turpis posuere venenatis a eu arcu. Morbi vulputate massa sit amet dui cons
+ectetur efficitur. Phasellus a lobortis enim. Mauris hendrerit consectetur orci e
+get scelerisque.</p>
+            </div>
+        </div>
+        <footer>
+            <ul id=bottomMenu>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </footer>
+        <script>
+            const resultContainer = document.getElementById('resultContainer');
+            const input = document.getElementById('idInput');
+            document.querySelector('input[type="submit"]').addEventListener('click', (ev) => {
+                resultContainer.innerHTML = '';
+                let value = input.value;
+                if (value) {
+                    const elements = getAllChildren(value);
+                    if (elements.length == 0) {
+                        resultContainer.textContent = `Липсва елемент с id: ${value}.`;
+                    } else {
+                        listResult(elements);
+                    }
+                } else {
+                    resultContainer.textContent = 'Моля, въведете стойност!';
+                }
+                input.value = '';
+            });
+
+            function getAllChildren(value) {
+                const element = document.getElementById(value);
+                if (!element) {
+                    return [];
+                }
+                let result = [element.tagName.toLowerCase()];
+                const children = element.children;
+                for (let i = 0; i < children.length; i++) {
+                    const child = children[i];
+                    result.push(child.tagName.toLowerCase());
+                    for (let j = 0; j < child.children.length; j++) {
+                        result.push(child.children[j].tagName.toLowerCase());
+                    }
+                }
+                return result;
+            }
+
+            function listResult(elements) {
+                const list = document.createElement('ul');
+                elements.forEach(el => {
+                    const item = document.createElement('li');
+                    item.textContent = el;
+                    list.appendChild(item);
+                })
+                resultContainer.appendChild(list);
+            }
+    
+        </script>
+    </body>
+</html>
